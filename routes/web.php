@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\MarcaController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/api/categoria/registrar', [CategoriaController::class, 'store']);
+Route::post('/api/cliente/registrar', [ClienteController::class, 'store']);
+Route::post('/api/marca/registrar', [MarcaController::class, 'store']);
