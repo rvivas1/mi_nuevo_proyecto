@@ -21,6 +21,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// :::::::::: ROUTES CATEGORIAS >>>>>>>>>>>>>>>>
+Route::get('/api/categoria', [CategoriaController::class, 'index']);
 Route::post('/api/categoria/registrar', [CategoriaController::class, 'store']);
+
+
+// :::::::::: ROUTES CLIENTES >>>>>>>>>>>>>>>>
+Route::get('/api/cliente', [ClienteController::class, 'index']);
 Route::post('/api/cliente/registrar', [ClienteController::class, 'store']);
+
+
+
+
+
+// :::::::::: ROUTES MARCAS >>>>>>>>>>>>>>>>
+Route::get('/api/marca', [MarcaController::class, 'index']);
 Route::post('/api/marca/registrar', [MarcaController::class, 'store']);
+

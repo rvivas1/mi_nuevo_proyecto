@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class ClienteController extends Controller
 {
     //
+    public function index(){
+        $cliente=Cliente::all();
+        return ['cliente'=>$cliente];
+
+    }
+
     public function store(Request $request){
         $cliente= new cliente();
         $cliente-> tip_doc=$request->tip_doc;
