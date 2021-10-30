@@ -22,6 +22,19 @@ class CategoriaController extends Controller
         $categoria-> estado=$request->edo;
 
         $categoria->save();
-        
     }
+    
+    public function update(Request $request){
+        $categoria= Categoria::findOrFail($request->id);
+        $categoria-> nombre=$request->nombre;
+        $categoria-> estado=$request->edo;
+        
+        $categoria->save();
+    }
+    public function destroy(Request $request){
+        $categoria= Categoria::findOrFail($request->id);
+        $categoria-> delete();
+    }
+
+
 }

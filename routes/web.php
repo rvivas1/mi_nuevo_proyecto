@@ -24,11 +24,15 @@ Route::get('/', function () {
 // :::::::::: ROUTES CATEGORIAS >>>>>>>>>>>>>>>>
 Route::get('/api/categoria', [CategoriaController::class, 'index']);
 Route::post('/api/categoria/registrar', [CategoriaController::class, 'store']);
+Route::put('/api/categoria/actualizar', [CategoriaController::class, 'update']);
+Route::post('/api/categoria/eliminar', [CategoriaController::class, 'destroy']);
 
 
 // :::::::::: ROUTES CLIENTES >>>>>>>>>>>>>>>>
 Route::get('/api/cliente', [ClienteController::class, 'index']);
 Route::post('/api/cliente/registrar', [ClienteController::class, 'store']);
+Route::put('/api/cliente/actualizar', [ClienteController::class, 'update']);
+Route::post('/api/cliente/eliminar', [ClienteController::class, 'destroy']);
 
 
 
@@ -37,4 +41,6 @@ Route::post('/api/cliente/registrar', [ClienteController::class, 'store']);
 // :::::::::: ROUTES MARCAS >>>>>>>>>>>>>>>>
 Route::get('/api/marca', [MarcaController::class, 'index']);
 Route::post('/api/marca/registrar', [MarcaController::class, 'store']);
+Route::put('/api/marca/actualizar', [MarcaController::class, 'update']);
+Route::post('/api/marca/eliminar', [MarcaController::class, 'destroy']);
 
