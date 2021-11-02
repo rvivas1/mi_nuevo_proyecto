@@ -15,7 +15,7 @@ class CategoriaController extends Controller
 
     }
 
-
+  
     public function store(Request $request){
         $categoria= new Categoria();
         $categoria-> nombre=$request->nombre;
@@ -35,6 +35,16 @@ class CategoriaController extends Controller
         $categoria= Categoria::findOrFail($request->id);
         $categoria-> delete();
     }
+    public function getCategoria(Request $request){
+        $edo = $request->edo;
+        
+        $categoria= Categoria::select('id','nombre')
+        ->where('estado',$edo)->get();
+        return [
+            'categ'=>$categoria
+        ];
+    }
+
 
 
 }

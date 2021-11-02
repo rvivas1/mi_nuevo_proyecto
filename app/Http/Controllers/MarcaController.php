@@ -34,4 +34,14 @@ class MarcaController extends Controller
         $marca= Marca::findOrFail($request->id);
         $marca-> delete();
     }
+
+    public function getMarca(Request $request){
+        $edo = $request->edo;
+        
+        $marca= Marca::select('id','nombre')
+        ->where('estado',$edo)->get();
+        return ['marca'=>$marca];
+    }
+
+
 }
