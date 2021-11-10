@@ -18,7 +18,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\FacturaController;
-use App\Http\Controllers\DetFacturaController;
+// use App\Http\Controllers\DetFacturaController;
 
 
 
@@ -70,10 +70,10 @@ Route::post('/api/factura/eliminar', [FacturaController:: class, 'destroy']);
 
 
 // :::::::::: ROUTES DETFACTURAS >>>>>>>>>>>>>>>>
-Route::get('/api/detfact', [DetFacturaController:: class, 'index']);
-Route::post('/api/detfact/registrar', [DetFacturaController:: class, 'store']);
+// Route::get('/api/detfact', [DetFacturaController:: class, 'index']);
+// Route::post('/api/detfact/registrar', [DetFacturaController:: class, 'store']);
 Route::put('/api/detfact/actualizar', [DetFacturaController:: class, 'update']);
-Route::post('/api/detfact/eliminar', [DetFacturaController:: class, 'destroy']);
+// Route::post('/api/detfact/eliminar', [DetFacturaController:: class, 'destroy']);
 
 
 

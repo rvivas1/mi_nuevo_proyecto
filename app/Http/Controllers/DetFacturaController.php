@@ -9,25 +9,25 @@ class DetFacturaController extends Controller
 {
     //
 
-    public function index(){
-        $detfact= DetFactura::all();
-        return ['detfact'=> $detfact];
-    }
+    // public function index(){
+    //     $detfact= DetFactura::all();
+    //     return ['detfact'=> $detfact];
+    // }
 
 
 
-    public function store(Request $request){
-        $detfact= new DetFactura();
-        $detfact-> precio= $request-> precio;
-        $detfact-> cantidad= $request-> cantidad;
-        $detfact-> total= $request-> total;
+    // public function store(Request $request){
+    //     $detfact= new DetFactura();
+    //     $detfact-> precio= $request-> precio;
+    //     $detfact-> cantidad= $request-> cantidad;
+    //     $detfact-> total= $request-> total;
 
-        $detfact-> id_fact= $request-> id_fact;
-        $detfact-> id_prod= $request-> id_prod;
+    //     $detfact-> id_fact= $request-> id_fact;
+    //     $detfact-> id_prod= $request-> id_prod;
 
-        $detfact->save();
+    //     $detfact->save();
 
-    }
+    // }
 
     public function update(Request $request){
         $detfact= DetFactura::findOrFail($request->id);
@@ -42,11 +42,11 @@ class DetFacturaController extends Controller
 
     }
 
-    public function destroy(Request $request){
-        $detfact= DetFactura:: findOrFail($request->id);
-        $detfact->delete();
+    // public function destroy(Request $request){
+    //     $detfact= DetFactura:: findOrFail($request->id);
+    //     $detfact->delete();
 
-    }
+    // }
 
 
 
