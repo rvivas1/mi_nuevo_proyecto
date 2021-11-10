@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Factura;
+use App\Models\DetFactura;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class FacturaController extends Controller
 {
@@ -16,12 +19,45 @@ class FacturaController extends Controller
 
 
     public function store(Request $request){
-        $factura = new Factura();
-        $factura-> fecha = $request-> fecha;
-        $factura-> total = $request-> total;
+        try {
+            DB::beginTransaction();
+
+            $fecha= Carbon::now('america/bogota');
+
+            $factura = new Factura();
+
+            $factura-> id_clie = $request-> idClien;
+            $factura-> fecha = $fecha;
+            $factura-> id_vend = $request-> idVend;
+            $factura-> total = $request-> total;
+
+            $factura->save();
+
+            $detalles = $request -> data;
+
+            foreach($detalles as $ep => $det){
+
+                $detalle = new DetFactura();
+                $detalle -> id_fact = $factura->id;
+                $detalle -> id_prod = $det['id_prod'];
+                $detalle -> precio = $det['precio'];
+                $detalle -> cantidad =$det['cantidad'];
+                $detalle -> total = $det['precio'] * $det['cantidad'];
+
+                $detalle->save();
+
+            }
+            
+            DB::commit();            
+        }catch (Excepcion $e){
+            BD::rollback();
+            console.log($e);
+        }
         
-        $factura-> id_clie = $request-> idClien;
-        $factura-> id_vend = $request-> idVend;
+        
+        
+        
+        
 
         $factura->save();
     }
