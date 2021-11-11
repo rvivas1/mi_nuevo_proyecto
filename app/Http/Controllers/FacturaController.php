@@ -41,7 +41,7 @@ class FacturaController extends Controller
                 $detalle -> id_fact = $factura->id;
                 $detalle -> id_prod = $det['id_prod'];
                 $detalle -> precio = $det['precio'];
-                $detalle -> cantidad =$det['cantidad'];
+                $detalle -> cant =$det['cantidad'];
                 $detalle -> total = $det['precio'] * $det['cantidad'];
 
                 $detalle->save();
