@@ -52,12 +52,7 @@ class FacturaController extends Controller
         }catch (Excepcion $e){
             BD::rollback();
             console.log($e);
-        }
-        
-        
-        
-        
-        
+        }        
 
         $factura->save();
     }

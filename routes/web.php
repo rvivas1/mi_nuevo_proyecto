@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,19 +14,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\FacturaController;
-// use App\Http\Controllers\DetFacturaController;
-
-
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
 
 // :::::::::: ROUTES CATEGORIAS >>>>>>>>>>>>>>>>
 Route::get('/api/categoria', [CategoriaController::class, 'index']);
@@ -34,12 +41,12 @@ Route::put('/api/categoria/actualizar', [CategoriaController::class, 'update']);
 Route::post('/api/categoria/eliminar', [CategoriaController::class, 'destroy']);
 
 
+
 // :::::::::: ROUTES CLIENTES >>>>>>>>>>>>>>>>
 Route::get('/api/cliente', [ClienteController::class, 'index']);
 Route::post('/api/cliente/registrar', [ClienteController::class, 'store']);
 Route::put('/api/cliente/actualizar', [ClienteController::class, 'update']);
 Route::post('/api/cliente/eliminar', [ClienteController::class, 'destroy']);
-
 
 
 // :::::::::: ROUTES MARCAS >>>>>>>>>>>>>>>>
@@ -50,7 +57,6 @@ Route::put('/api/marca/actualizar', [MarcaController::class, 'update']);
 Route::post('/api/marca/eliminar', [MarcaController::class, 'destroy']);
 
 
-
 // :::::::::: ROUTES PRODUCTOS >>>>>>>>>>>>>>>>
 Route::get('/api/producto', [ProductoController::class, 'index']);
 Route::post('/api/producto/registrar', [ProductoController::class,'store']);
@@ -58,22 +64,8 @@ Route::put('/api/producto/actualizar', [ProductoController:: class, 'update']);
 Route::post('/api/producto/eliminar', [ProductoController:: class, 'destroy']);
 
 
-
-
 // :::::::::: ROUTES FACTURAS >>>>>>>>>>>>>>>>
 Route::get('/api/factura', [FacturaController:: class, 'index']);
 Route::post('/api/factura/registrar', [FacturaController:: class, 'store']);
 Route::put('/api/factura/actualizar', [FacturaController:: class, 'update']);
 Route::post('/api/factura/eliminar', [FacturaController:: class, 'destroy']);
-
-
-
-
-// :::::::::: ROUTES DETFACTURAS >>>>>>>>>>>>>>>>
-// Route::get('/api/detfact', [DetFacturaController:: class, 'index']);
-// Route::post('/api/detfact/registrar', [DetFacturaController:: class, 'store']);
-Route::put('/api/detfact/actualizar', [DetFacturaController:: class, 'update']);
-// Route::post('/api/detfact/eliminar', [DetFacturaController:: class, 'destroy']);
-
-
-
