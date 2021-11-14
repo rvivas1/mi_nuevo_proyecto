@@ -20,7 +20,11 @@
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    Inicio
+                                </jet-nav-link>
+
+                                <jet-nav-link :href="route('categoria')" :active="route().current('categoria')">
+                                    Categoria
                                 </jet-nav-link>
                             </div>
                         </div>
