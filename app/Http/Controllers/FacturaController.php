@@ -26,7 +26,7 @@ class FacturaController extends Controller
 
             $factura = new Factura();
 
-            $factura-> id_clie = $request-> idClien;
+            $factura-> id_clien = $request-> idClien;
             $factura-> fecha = $fecha;
             $factura-> id_vend = $request-> idVend;
             $factura-> total = $request-> total;

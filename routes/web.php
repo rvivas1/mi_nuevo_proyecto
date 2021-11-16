@@ -44,14 +44,15 @@ Route::middleware(['auth:sanctum'])->post('/api/categoria/eliminar', [CategoriaC
 
 
 // :::::::::: ROUTES CLIENTES >>>>>>>>>>>>>>>>
-Route::middleware(['auth:sanctum'])->get('/api/cliente', [ClienteController::class, 'index']);
+Route::middleware(['auth:sanctum'])->get('/api/cliente', [ClienteController::class, 'index'])->name('cliente');
+
 Route::middleware(['auth:sanctum'])->post('/api/cliente/registrar', [ClienteController::class, 'store']);
 Route::middleware(['auth:sanctum'])->put('/api/cliente/actualizar', [ClienteController::class, 'update']);
 Route::middleware(['auth:sanctum'])->post('/api/cliente/eliminar', [ClienteController::class, 'destroy']);
 
 
 // :::::::::: ROUTES MARCAS >>>>>>>>>>>>>>>>
-Route::middleware(['auth:sanctum'])->get('/api/marca', [MarcaController::class, 'index']);
+Route::middleware(['auth:sanctum'])->get('/api/marca', [MarcaController::class, 'index'])->name('marca');
 Route::middleware(['auth:sanctum'])->get('/api/marca/getmarca', [MarcaController::class, 'getMarca']);
 Route::middleware(['auth:sanctum'])->post('/api/marca/registrar', [MarcaController::class, 'store']);
 Route::middleware(['auth:sanctum'])->put('/api/marca/actualizar', [MarcaController::class, 'update']);
