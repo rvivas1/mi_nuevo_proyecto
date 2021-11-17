@@ -53,6 +53,7 @@ Route::middleware(['auth:sanctum'])->post('/api/cliente/eliminar', [ClienteContr
 
 // :::::::::: ROUTES MARCAS >>>>>>>>>>>>>>>>
 Route::middleware(['auth:sanctum'])->get('/api/marca', [MarcaController::class, 'index'])->name('marca');
+
 Route::middleware(['auth:sanctum'])->get('/api/marca/getmarca', [MarcaController::class, 'getMarca']);
 Route::middleware(['auth:sanctum'])->post('/api/marca/registrar', [MarcaController::class, 'store']);
 Route::middleware(['auth:sanctum'])->put('/api/marca/actualizar', [MarcaController::class, 'update']);

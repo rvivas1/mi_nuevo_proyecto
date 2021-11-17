@@ -26,9 +26,11 @@
                                 <jet-nav-link :href="route('categoria')" :active="route().current('categoria')">
                                     Categorias
                                 </jet-nav-link>
+                               
                                 <jet-nav-link :href="route('cliente')" :active="route().current('cliente')">
                                     Clientes
                                 </jet-nav-link>
+
                                 <jet-nav-link :href="route('marca')" :active="route().current('marca')">
                                     Marcas
                                 </jet-nav-link>
