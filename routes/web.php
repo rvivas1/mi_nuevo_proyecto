@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // :::::::::: ROUTES CATEGORIAS >>>>>>>>>>>>>>>>
+Route::middleware(['auth:sanctum'])->get('/api/categoria/data', [CategoriaController::class, 'indexData']);
 Route::middleware(['auth:sanctum'])->get('/api/categoria', [CategoriaController::class, 'index'])->name('categoria');
 
 Route::middleware(['auth:sanctum'])->get('/api/categoria/getCateg', [CategoriaController::class, 'getCategoria']);

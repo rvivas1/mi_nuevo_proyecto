@@ -1,5 +1,5 @@
 <template>
-    <app-layout title="cliente">
+    <app-layout title="Clientes">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Cliente
@@ -9,12 +9,12 @@
                         {{objeto.nombres}}
                     </h1> -->
 
-     <div class="overflow-x-auto">   
+      <div class="overflow-x-auto" v-if="tipoAccion==0">
         <div class="bg-gray-100 flex items-center justify-center d-grid gap-2 d-md-flex  bg-gray-100 font-sans overflow-hidden">
             <div class="w-full lg:w-3/4 d-grid gap-2 d-md-flex ">
                 <div class="bg-white shadow-md rounded my-8">
                     <div class="bg-gray-100 d-grid gap-2 d-md-flex ">
-                       <button type="button d-grid gap-2 d-md-flex " class='py-1 px-6 bg-gradient-to-r from-indigo-500 via-green-700 to-blue-600 hover:from-indigo-600 hover:via-gray-600 hover:to-waith-600 focus:outline-none text-white uppercase font-bold  rounded-lg mx-auto p-4'>
+                       <button type="button d-grid gap-2 d-md-flex" @click="abrirCliente" class='py-1 px-6 bg-gradient-to-r from-indigo-500 via-green-700 to-blue-600 hover:from-indigo-600 hover:via-gray-600 hover:to-waith-600 focus:outline-none text-white uppercase font-bold  rounded-lg mx-auto p-4'>
                            <div class="flex sm:flex-cols-6 gap-2">
                               <div class="col-span-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +28,7 @@
     
                     <table class="min-w-max w-full table-fixed ">
                         <thead>
-                            <tr class="bg-gray-500 text-white uppercase text-sm leading-normal">
+                            <tr class="bg-gray-600 text-white uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">Documento</th>
                                 <th class="py-3 px-6 text-left">Nombre</th>
                                 <th class="py-3 px-6 text-left">Apellido</th>
@@ -101,7 +101,117 @@
                 </div>
             </div>
         </div>
-    </div>
+       </div>
+      <div class="overflow-x-auto mb-12" v-if="tipoAccion==1">
+  <div class="flex justify-center items-center bg-gray-200 antialiased">
+      <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl">
+        <div
+          class="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg"
+        >
+          <p class="font-semibold text-gray-800 text-3xl" v-text="tittle"></p>
+          <svg
+            @click="cerrarCliente"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </div>
+        
+        
+        <div class="flex flex-col px-6 py-5 bg-gray-50">
+             <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
+            <div class="w-full">
+               <p class="mb-2 font-semibold text-gray-700">Seleccione el tipo de documento</p>
+
+               <select class="w-full text-gray-700 border-gray-600 rounded" name="estado" v-model="estado1" >
+                   <option value="1">Cédula de ciudadanía</option>
+                   <option value="2">Tarjeta de identidad</option>
+                   <option value="3">Cédula de extrangeria</option>
+                   <option value="4">Pasaporte</option>
+               </select>
+            </div>
+          </div>
+                <p class="mb-2 font-semibold text-gray-700">Ingrese el número de documento</p>
+          <input
+            v-model="numero"
+            type="number"
+            name=""
+            placeholder="Número de documento"
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-12"
+          >
+          <p class="mb-2 font-semibold text-gray-700">Nombres</p>
+          <input
+            v-model="nombre"
+            type="text"
+            name=""
+            placeholder="Ingrese el nombre"
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-12"
+          >
+          <p class="mb-2 font-semibold text-gray-700">Apellidos</p>
+          <input
+            v-model="apellido"
+            type="text"
+            name=""
+            placeholder="ingrese el apellido"
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-12"
+          >
+          <p class="mb-2 font-semibold text-gray-700">Teléfono</p>
+          <input
+            v-model="telefono"
+            type="number"
+            name=""
+            placeholder="Ingrese el número de teléfono "
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-12"
+          >
+          <p class="mb-2 font-semibold text-gray-700">Dirección</p>
+          <input
+            v-model="direccion"
+            type="text"
+            name=""
+            placeholder="Ingrese la dirección"
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-12"
+          >
+          <p class="mb-2 font-semibold text-gray-700">Correo electrónico</p>
+          <input
+            v-model="correo"
+            type="text"
+            name=""
+            placeholder="Ingrese el correo"
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-12"
+          >
+          <div class="w-full">
+               <p class="mb-2 font-semibold text-gray-700">Seleccione un estado</p>
+
+               <select class="w-full text-gray-700 border-gray-600 rounded" name="estado" v-model="estado2" >
+                   <option value="1">Activo</option>
+                   <option value="0">Inactivo</option>
+               </select>
+            </div>
+         
+          <hr />
+        </div>
+        <div
+          class="flex flex-row items-center justify-end p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
+        >
+          <button @click="cerrarCliente" class="px-4 py-2 mr-5 text-white font-semibold bg-gray-500 rounded">
+            Cerrar
+          </button>
+          <button @click="regCliente" class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>   
+       </div>
 
 
 
@@ -119,21 +229,62 @@
             AppLayout,
             Welcome,
         },
+        data(){
+            return{
+                tipoAccion: 0,
+                tittle:"",
+                estado1:"",
+                nombre:"",
+                apellido:"",
+                telefono:"",
+                direccion:"",
+                correo:"",
+                estado2:0,
+
+            }
+        },
         props:['cliente'],
 
         methods:{
+            abrirCliente(){
+                this.tipoAccion=1
+                this.tittle="Registrar cliente"
+            },
+            regCliente(){
+                let me=this;
+                var url="/api/cliente/registrar";
+                axios.post(url,
+                {
+                   tip_doc: this.estado1,
+                   num_doc: this.numero,
+                   nombres: this.nombre,
+                   apellidos: this.apellido,
+                   tel: this.telefono,
+                   dir: this.direccion,
+                   email: this.correo,
+                   edo: this.estado2,
+                })
+                 .then(function(response)
+                {
+                    alert('Registro guardado exitosamente!');
+                })
+                .catch(function(error){
+                    console.log(error.message);
+                })
+            },
             verCliente(){
                 alert('boton ver ok');
-
             },
             editarCliente(){
-                alert('boton editar ok');
-
+                this.tipoAccion=1
+                this.tittle="Actualizar cliente"
             },
 
             eliminarCliente(){
                 alert('boton eliminar ok');
-
+            },
+            cerrarCliente(){
+                this.tipoAccion=0
             }
         }
     })

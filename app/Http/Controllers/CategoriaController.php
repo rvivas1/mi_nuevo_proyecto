@@ -16,6 +16,11 @@ class CategoriaController extends Controller
         
         // return ['categoria'=>$categoria];
     }
+    public function indexData(){
+        $categoria=Categoria::all();
+        
+        return ['categoria'=>$categoria];
+    }
 
   
     public function store(Request $request){
