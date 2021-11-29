@@ -503,6 +503,12 @@ export default defineComponent({
           console.log(error);
         });
     },
+    abrirCategoria() {
+          this.tittle = "Registrar categoría";
+          this.tipoAccion = 1;
+          this.boton = false;
+          this.limpiar();
+    },
     regCategoria() {
         let me = this;
       var url = "/api/categoria/registrar";
@@ -519,6 +525,13 @@ export default defineComponent({
         .catch(function (error) {
             console.log(error.message);
         });
+    },
+    editarCategoria(data = []) {
+      this.tittle = "Actualizar categoría";
+      this.tipoAccion = 1;
+      this.idCat = data["id"];
+      this.nombre = data["nombre"];
+      this.estado = data["estado"];
     },
     actCategoria() {
         let me = this;
@@ -537,13 +550,11 @@ export default defineComponent({
         .catch(function (error) {
             console.log(error.message);
         });
-    },
-    editarCategoria(data = []) {
-      this.tittle = "Actualizar categoría";
-      this.tipoAccion = 1;
+    },    
+    eliminarCategoria(data = []) {
+      this.tipoAccion = 2;
       this.idCat = data["id"];
-      this.nombre = data["nombre"];
-      this.estado = data["estado"];
+      this.nombreCat = data["nombre"];
     },
     destroyCategoria() {
       let me = this;
@@ -555,27 +566,19 @@ export default defineComponent({
         })
         .then(function (response) {
           me.listarDatos();
-          alert("Regitro eliminado!");
+          alert("Registro eliminado!");
           me.cerrarCat();
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-    abrirCategoria() {
-          this.tittle = "Registrar categoría";
-          this.tipoAccion = 1;
-          this.boton = false;
-    },
-    verCategoria() {
-        alert("boton ver ok");
-    },
-    eliminarCategoria(data = []) {
-      this.tittle = "Actualizar categoría";
-      this.tipoAccion = 2;
-      this.idCat = data["id"];
-      this.nombreCat = data["nombre"];
-    },
+    // verCategoria() {
+    //   this.tipoAccion=1;
+    //   this.tittle=`Esta es la categoría: ${this.nombreCat}`;
+    //   me.listarDatos();
+    //     alert("boton ver ok");
+    // },  
     
     limpiar() {
       this.nombre = "";

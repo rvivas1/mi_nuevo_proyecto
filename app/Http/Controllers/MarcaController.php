@@ -15,6 +15,11 @@ class MarcaController extends Controller
         // return ['marca'=>$marca];
 
     }
+    public function indexData(){
+        $marca=Marca::all();
+        return ['marca'=>$marca];
+
+    }
 
     public function store(Request $request){
         $marca= new Marca();

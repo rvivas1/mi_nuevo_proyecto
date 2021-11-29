@@ -5,9 +5,6 @@
                 Cliente
             </h2>
         </template>
-                      <!-- <h1 v-for="(objeto, index) in cliente" :key="index">
-                        {{objeto.nombres}}
-                    </h1> -->
 
       <div class="overflow-x-auto" v-if="tipoAccion==0">
         <div class="bg-gray-100 flex items-center justify-center d-grid gap-2 d-md-flex  bg-gray-100 font-sans overflow-hidden">
@@ -40,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
-                            <tr v-for="(objeto, index) in cliente" :key="index" class="border-b border-gray-200 hover:bg-gray-100">
+                            <tr v-for="(objeto, index) in arrayData" :key="index" class="border-b border-gray-200 hover:bg-gray-100">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">                                       
                                         <span class="font-medium">{{objeto.num_doc}}</span>
@@ -83,12 +80,12 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                         </div>
-                                        <div class="w-4 mr-2 transform hover:text-green-500 hover:scale-110" title="Actualizar" @click="editarCliente">
+                                        <div class="w-4 mr-2 transform hover:text-green-500 hover:scale-110" title="Actualizar" @click="editarCliente(objeto)">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                             </svg>
                                         </div>
-                                        <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110" title="Eliminar" @click="eliminarCliente">
+                                        <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110" title="Eliminar" @click="eliminarCliente(objeto)">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>
@@ -142,7 +139,7 @@
           </div>
                 <p class="mb-2 font-semibold text-gray-700">Ingrese el número de documento</p>
           <input
-            v-model="numero"
+            v-model="cedula"
             type="number"
             name=""
             placeholder="Número de documento"
@@ -205,13 +202,127 @@
           <button @click="cerrarCliente" class="px-4 py-2 mr-5 text-white font-semibold bg-gray-500 rounded">
             Cerrar
           </button>
-          <button @click="regCliente" class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
+          <button v-if="opcBoton==false" @click="regCliente" class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
             Guardar
+          </button>
+          <button v-else @click="actCliente" class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
+            Actualizar
           </button>
         </div>
       </div>
     </div>   
        </div>
+       <div class="overflow-x-auto mb-12" v-if="tipoAccion == 2">
+      <div
+        class="
+          flex flex-col
+          space-y-4
+          min-w-screen
+          bg-opacity-25
+          h-screen
+          animated
+          fadeIn
+          faster
+          fixed
+          left-0
+          top-0
+          flex
+          justify-center
+          items-center
+          inset-0
+          z-50
+          outline-none
+          focus:outline-none
+          bg-gray-900
+        "
+      >
+        <div
+          class="
+            flex flex-col
+            p-8
+            bg-gray-800
+            shadow-md
+            hover:shodow-lg
+            rounded-2xl
+          "
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="
+                  w-16
+                  h-16
+                  rounded-2xl
+                  p-3
+                  border border-gray-800
+                  text-blue-400
+                  bg-gray-900
+                "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <div class="flex flex-col ml-3">
+                <div class="font-medium leading-none text-gray-100">
+                  Eliminar el cliente {{nomCliente}}?
+                </div>
+                <p class="text-sm text-white leading-none mt-1">
+                  Este proceso es irreversible!
+                </p>
+              </div>
+            </div>
+            <button
+              @click="cerrarCliente"
+              class="
+                flex-no-shrink
+                bg-gray-500
+                px-5
+                ml-4
+                py-2
+                text-sm
+                shadow-sm
+                hover:shadow-lg
+                font-medium
+                tracking-wider
+                border-2 border-gray-500
+                text-white
+                rounded-full
+              "
+            >
+              NO
+            </button>
+            <button
+              @click="destroyCliente"
+              class="
+                flex-no-shrink
+                bg-red-500
+                px-5
+                ml-4
+                py-2
+                text-sm
+                shadow-sm
+                hover:shadow-lg
+                font-medium
+                tracking-wider
+                border-2 border-red-500
+                text-white
+                rounded-full
+              "
+            >
+              SI
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -234,21 +345,41 @@
                 tipoAccion: 0,
                 tittle:"",
                 estado1:"",
+                cedula:"",
                 nombre:"",
+                nomCliente:"",
                 apellido:"",
                 telefono:"",
                 direccion:"",
                 correo:"",
                 estado2:0,
+                opcBoton:true,
+                idCliente: 0,
+                arrayData:[]
 
             }
         },
-        props:['cliente'],
 
         methods:{
+            listarDatos() {
+      let me = this;
+      var url = "/api/cliente/data";
+
+      axios
+        .get(url)
+        .then(function (response) {
+          var respuesta = response.data;
+          me.arrayData = respuesta.cliente;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
             abrirCliente(){
                 this.tipoAccion=1
                 this.tittle="Registrar cliente"
+                this.opcBoton=false;
+                this.limpiar();
             },
             regCliente(){
                 let me=this;
@@ -256,7 +387,7 @@
                 axios.post(url,
                 {
                    tip_doc: this.estado1,
-                   num_doc: this.numero,
+                   num_doc: this.cedula,
                    nombres: this.nombre,
                    apellidos: this.apellido,
                    tel: this.telefono,
@@ -266,26 +397,94 @@
                 })
                  .then(function(response)
                 {
+                    me.listarDatos();
                     alert('Registro guardado exitosamente!');
+                    me.cerrarCliente();
                 })
                 .catch(function(error){
                     console.log(error.message);
-                })
+                });
             },
+            editarCliente(data=[]){
+                this.tipoAccion=1
+                this.tittle="Actualizar cliente"
+                this.idCliente = data['id'];
+                this.estado1 = data['tip_doc'];
+                this.cedula = data['num_doc'];
+                this.nombre = data['nombres'];
+                this.apellido = data['apellidos'];
+                this.telefono = data['tel'];
+                this.direccion = data['dir'];
+                this.correo = data['email'];
+                this.estado2 = data['estado'];
+            },
+            actCliente() {
+        let me = this;
+      var url = "/api/cliente/actualizar";
+      axios
+        .put(url, {
+            id: this.idCliente,
+            tip_doc:this.estado1,
+            num_doc: this.cedula,
+            nombres: this.nombre,
+            apellidos: this.apellido,
+            tel: this.telefono,
+            dir: this.direccion,
+            email: this.correo,
+            estado: this.estado2,
+        })
+        .then(function (response) {
+            me.listarDatos();
+          alert("Registro actualizado exitosamente!");
+          me.cerrarCliente();
+        })
+        .catch(function (error) {
+            console.log(error.message);
+        });
+    },
+            eliminarCliente(data=[]){
+                this.tipoAccion=2
+                this.idCliente=data['id'];
+                this.nomCliente=data['nombres'];
+
+            },
+            destroyCliente() {
+      let me = this;
+      var url = "/api/cliente/eliminar";
+
+      axios
+        .post(url, {
+          id: this.idCliente,
+        })
+        .then(function (response) {
+          me.listarDatos();
+          alert("Registro eliminado!");
+          me.cerrarCliente();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
             verCliente(){
                 alert('boton ver ok');
             },
-            editarCliente(){
-                this.tipoAccion=1
-                this.tittle="Actualizar cliente"
-            },
-
-            eliminarCliente(){
-                alert('boton eliminar ok');
-            },
+            limpiar() {
+                this.nombre = "";
+                this.estado = 0;
+                this.cedula="",
+                this.apellido="",
+                this.telefono="",
+                this.direccion="",
+                this.correo="",
+                this.estado2=0,
+                this.estado1=0
+    },
             cerrarCliente(){
                 this.tipoAccion=0
             }
+        },
+        mounted(){
+            this.listarDatos();
         }
     })
 </script>

@@ -45,6 +45,7 @@ Route::middleware(['auth:sanctum'])->post('/api/categoria/eliminar', [CategoriaC
 
 
 // :::::::::: ROUTES CLIENTES >>>>>>>>>>>>>>>>
+Route::middleware(['auth:sanctum'])->get('/api/cliente/data', [ClienteController::class, 'indexData']);
 Route::middleware(['auth:sanctum'])->get('/api/cliente', [ClienteController::class, 'index'])->name('cliente');
 
 Route::middleware(['auth:sanctum'])->post('/api/cliente/registrar', [ClienteController::class, 'store']);
@@ -53,6 +54,7 @@ Route::middleware(['auth:sanctum'])->post('/api/cliente/eliminar', [ClienteContr
 
 
 // :::::::::: ROUTES MARCAS >>>>>>>>>>>>>>>>
+Route::middleware(['auth:sanctum'])->get('/api/marca/data', [MarcaController::class, 'indexData']);
 Route::middleware(['auth:sanctum'])->get('/api/marca', [MarcaController::class, 'index'])->name('marca');
 
 Route::middleware(['auth:sanctum'])->get('/api/marca/getmarca', [MarcaController::class, 'getMarca']);
