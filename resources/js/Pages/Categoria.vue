@@ -467,7 +467,7 @@
 <script>
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import Welcome from "@/Jetstream/Welcome.vue";
+// import Welcome from "@/Jetstream/Welcome.vue";
 import axios from "axios";
 
 export default defineComponent({
@@ -488,7 +488,7 @@ export default defineComponent({
     };
   },
   // props:['categoria'],
-  methods: {
+  methods: { 
     listarDatos() {
       let me = this;
       var url = "/api/categoria/data";

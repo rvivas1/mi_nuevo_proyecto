@@ -20610,17 +20610,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout.vue */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome.vue */ "./resources/js/Jetstream/Welcome.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
-
+ // import Welcome from "@/Jetstream/Welcome.vue";
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   components: {
     AppLayout: _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Welcome: _Jetstream_Welcome_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Welcome: Welcome
   },
   data: function data() {
     return {
@@ -20639,7 +20638,7 @@ __webpack_require__.r(__webpack_exports__);
     listarDatos: function listarDatos() {
       var me = this;
       var url = "/api/categoria/data";
-      axios__WEBPACK_IMPORTED_MODULE_3___default().get(url).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayData = respuesta.categoria;
       })["catch"](function (error) {
@@ -20655,7 +20654,7 @@ __webpack_require__.r(__webpack_exports__);
     regCategoria: function regCategoria() {
       var me = this;
       var url = "/api/categoria/registrar";
-      axios__WEBPACK_IMPORTED_MODULE_3___default().post(url, {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post(url, {
         nombre: this.nombre,
         edo: this.estado
       }).then(function (response) {
@@ -20677,7 +20676,7 @@ __webpack_require__.r(__webpack_exports__);
     actCategoria: function actCategoria() {
       var me = this;
       var url = "/api/categoria/actualizar";
-      axios__WEBPACK_IMPORTED_MODULE_3___default().put(url, {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().put(url, {
         id: this.idCat,
         nombre: this.nombre,
         edo: this.estado
@@ -20698,7 +20697,7 @@ __webpack_require__.r(__webpack_exports__);
     destroyCategoria: function destroyCategoria() {
       var me = this;
       var url = "/api/categoria/eliminar";
-      axios__WEBPACK_IMPORTED_MODULE_3___default().post(url, {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post(url, {
         id: this.idCat
       }).then(function (response) {
         me.listarDatos();
@@ -20742,14 +20741,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout.vue */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome.vue */ "./resources/js/Jetstream/Welcome.vue");
 
-
+ // import Welcome from "@/Jetstream/Welcome.vue";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   components: {
     AppLayout: _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Welcome: _Jetstream_Welcome_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Welcome: Welcome
   },
   data: function data() {
     return {
@@ -20800,7 +20798,7 @@ __webpack_require__.r(__webpack_exports__);
         edo: this.estado2
       }).then(function (response) {
         me.listarDatos();
-        alert('Registro guardado exitosamente!');
+        alert("Registro guardado exitosamente!");
         me.cerrarCliente();
       })["catch"](function (error) {
         console.log(error.message);
@@ -20810,15 +20808,15 @@ __webpack_require__.r(__webpack_exports__);
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       this.tipoAccion = 1;
       this.tittle = "Actualizar cliente";
-      this.idCliente = data['id'];
-      this.estado1 = data['tip_doc'];
-      this.cedula = data['num_doc'];
-      this.nombre = data['nombres'];
-      this.apellido = data['apellidos'];
-      this.telefono = data['tel'];
-      this.direccion = data['dir'];
-      this.correo = data['email'];
-      this.estado2 = data['estado'];
+      this.idCliente = data["id"];
+      this.estado1 = data["tip_doc"];
+      this.cedula = data["num_doc"];
+      this.nombre = data["nombres"];
+      this.apellido = data["apellidos"];
+      this.telefono = data["tel"];
+      this.direccion = data["dir"];
+      this.correo = data["email"];
+      this.estado2 = data["estado"];
     },
     actCliente: function actCliente() {
       var me = this;
@@ -20844,8 +20842,8 @@ __webpack_require__.r(__webpack_exports__);
     eliminarCliente: function eliminarCliente() {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       this.tipoAccion = 2;
-      this.idCliente = data['id'];
-      this.nomCliente = data['nombres'];
+      this.idCliente = data["id"];
+      this.nomCliente = data["nombres"];
     },
     destroyCliente: function destroyCliente() {
       var me = this;
@@ -20861,7 +20859,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     verCliente: function verCliente() {
-      alert('boton ver ok');
+      alert("boton ver ok");
     },
     limpiar: function limpiar() {
       this.nombre = "";
@@ -20918,14 +20916,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout.vue */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome.vue */ "./resources/js/Jetstream/Welcome.vue");
 
-
+ // import Welcome from "@/Jetstream/Welcome.vue";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   components: {
     AppLayout: _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Welcome: _Jetstream_Welcome_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Welcome: Welcome
   },
   data: function data() {
     return {
@@ -20975,7 +20972,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       this.tittle = "Actualizar marca";
       this.tipoAccion = 1;
-      this.idMarca = data['id'];
+      this.idMarca = data["id"];
       this.nombre = data["nombre"];
       this.estado = data["estado"];
     },
@@ -25599,7 +25596,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 leading-tight"
-}, " Cliente ", -1
+}, "Cliente", -1
 /* HOISTED */
 );
 
@@ -25834,7 +25831,7 @@ var _hoisted_52 = {
 
 var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mb-2 font-semibold text-gray-700"
-}, "Seleccione el tipo de documento", -1
+}, " Seleccione el tipo de documento ", -1
 /* HOISTED */
 );
 
@@ -25866,7 +25863,7 @@ var _hoisted_58 = [_hoisted_54, _hoisted_55, _hoisted_56, _hoisted_57];
 
 var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mb-2 font-semibold text-gray-700"
-}, "Ingrese el número de documento", -1
+}, " Ingrese el número de documento ", -1
 /* HOISTED */
 );
 
@@ -25906,7 +25903,7 @@ var _hoisted_65 = {
 
 var _hoisted_66 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mb-2 font-semibold text-gray-700"
-}, "Seleccione un estado", -1
+}, " Seleccione un estado ", -1
 /* HOISTED */
 );
 

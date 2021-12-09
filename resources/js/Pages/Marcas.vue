@@ -446,7 +446,7 @@
 <script>
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import Welcome from "@/Jetstream/Welcome.vue";
+// import Welcome from "@/Jetstream/Welcome.vue";
 
 export default defineComponent({
   components: {
@@ -508,7 +508,7 @@ export default defineComponent({
     editarMarca(data = []) {
       this.tittle = "Actualizar marca";
       this.tipoAccion = 1;
-      this.idMarca = data['id'];
+      this.idMarca = data["id"];
       this.nombre = data["nombre"];
       this.estado = data["estado"];
     },
@@ -558,7 +558,7 @@ export default defineComponent({
     cerrarMarca() {
       this.tipoAccion = 0;
     },
-     limpiar() {
+    limpiar() {
       this.nombre = "";
       this.estado = "1";
     },
