@@ -1,12 +1,14 @@
 <template>
-  <app-layout title="Clientes">
+  <app-layout title="Productos">
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">Cliente</h2>
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Productos
+      </h2>
     </template>
-
-    <div class="overflow-x-auto" v-if="tipoAccion == 0">
+    <div class="overflow-x-auto mb-4" v-if="tipoAccion == 0">
       <div
         class="
+          min-w-screen
           bg-gray-100
           flex
           items-center
@@ -19,15 +21,15 @@
           overflow-hidden
         "
       >
-        <div class="w-full lg:w-3/4 d-grid gap-2 d-md-flex">
-          <div class="bg-white shadow-md rounded my-8">
-            <div class="bg-gray-100 d-grid gap-2 d-md-flex">
+        <div class="w-full lg:w-3/6 d-grid gap-2 d-md-flex">
+          <div class="bg-white shadow-md rounded my-6">
+            <div class="bg-gray-100 min-w-max w-full">
               <button
-                type="button d-grid gap-2 d-md-flex"
-                @click="abrirCliente"
+                type="button d-grid gap-1 d-md-flex"
+                @click="abrirProducto"
                 class="
                   py-1
-                  px-6
+                  px-2
                   bg-gradient-to-r
                   from-indigo-500
                   via-green-700
@@ -42,7 +44,7 @@
                   p-4
                 "
               >
-                <div class="flex sm:flex-cols-6 gap-2">
+                <div class="flex sm:flex-cols- gap-2">
                   <div class="col-span-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -75,12 +77,11 @@
                     leading-normal
                   "
                 >
-                  <th class="py-3 px-6 text-left">Documento</th>
+                  <th class="py-3 px-6 text-left">Código</th>
                   <th class="py-3 px-6 text-left">Nombre</th>
-                  <th class="py-3 px-6 text-left">Apellido</th>
-                  <th class="py-3 px-6 text-left">Teléfono</th>
-                  <th class="py-3 px-6 text-left">Dirección</th>
-                  <th class="py-3 px-6 text-left">Correo</th>
+                  <th class="py-3 px-6 text-left">Precio</th>
+                  <th class="py-3 px-6 text-left">Cantidad</th>
+                  <th class="py-3 px-6 text-left">Fecha venc</th>
                   <th class="py-3 px-6 text-left">Estado</th>
                   <th class="py-3 px-6">Acciones</th>
                 </tr>
@@ -93,40 +94,35 @@
                 >
                   <td class="py-3 px-6 text-left whitespace-nowrap">
                     <div class="flex items-center">
-                      <span class="font-medium">{{ objeto.num_doc }}</span>
+                      <span class="font-medium"> {{ objeto.nombre }}</span>
                     </div>
                   </td>
                   <td class="py-3 px-6 text-left whitespace-nowrap">
                     <div class="flex items-center">
-                      <span class="font-medium">{{ objeto.nombres }}</span>
+                      <span class="font-medium"> {{ objeto.nombre }}</span>
                     </div>
                   </td>
                   <td class="py-3 px-6 text-left whitespace-nowrap">
                     <div class="flex items-center">
-                      <span class="font-medium">{{ objeto.apellidos }}</span>
+                      <span class="font-medium"> {{ objeto.nombre }}</span>
                     </div>
                   </td>
                   <td class="py-3 px-6 text-left whitespace-nowrap">
                     <div class="flex items-center">
-                      <span class="font-medium">{{ objeto.tel }}</span>
+                      <span class="font-medium"> {{ objeto.nombre }}</span>
                     </div>
                   </td>
                   <td class="py-3 px-6 text-left whitespace-nowrap">
                     <div class="flex items-center">
-                      <span class="font-medium">{{ objeto.dir }}</span>
-                    </div>
-                  </td>
-                  <td class="py-3 px-6 text-left whitespace-nowrap">
-                    <div class="flex items-center">
-                      <span class="font-medium">{{ objeto.email }}</span>
-                    </div>
+                      <span class="font-medium"> {{ objeto.nombre }}</span>
+                    </div> 
                   </td>
                   <td class="py-3 px-6">
                     <span
                       v-if="objeto.estado == 1"
                       class="
                         bg-purple-100
-                        text-green-500
+                        text-green-600
                         py-1
                         px-3
                         rounded-full
@@ -138,7 +134,7 @@
                       v-else
                       class="
                         bg-purple-100
-                        text-red-500
+                        text-red-600
                         py-1
                         px-3
                         rounded-full
@@ -147,7 +143,7 @@
                       >Inactivo</span
                     >
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-6">
                     <div class="flex item-center justify-center">
                       <div
                         class="
@@ -157,7 +153,7 @@
                           hover:text-blue-500 hover:scale-110
                         "
                         title="Ver"
-                        @click="verCliente"
+                        @click="verproducto"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +183,7 @@
                           hover:text-green-500 hover:scale-110
                         "
                         title="Actualizar"
-                        @click="editarCliente(objeto)"
+                        @click="editarproducto(objeto)"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +207,7 @@
                           hover:text-red-500 hover:scale-110
                         "
                         title="Eliminar"
-                        @click="eliminarCliente(objeto)"
+                        @click="eliminarproducto(objeto)"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +232,7 @@
         </div>
       </div>
     </div>
-    <div class="overflow-x-auto mb-12" v-if="tipoAccion == 1">
+    <div class="overflow-x-auto mb-4" v-if="tipoAccion == 1">
       <div class="flex justify-center items-center bg-gray-200 antialiased">
         <div
           class="
@@ -263,7 +259,7 @@
           >
             <p class="font-semibold text-gray-800 text-3xl" v-text="tittle"></p>
             <svg
-              @click="cerrarCliente"
+              @click="cerrarProd"
               class="w-6 h-6"
               fill="none"
               stroke="currentColor"
@@ -278,36 +274,15 @@
               ></path>
             </svg>
           </div>
-
           <div class="flex flex-col px-6 py-5 bg-gray-50">
-            <div
-              class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5"
-            >
-              <div class="w-full">
-                <p class="mb-2 font-semibold text-gray-700">
-                  Seleccione el tipo de documento
-                </p>
-
-                <select
-                  class="w-full text-gray-700 border-gray-600 rounded"
-                  name="estado"
-                  v-model="estado1"
-                >
-                  <option value="1">Cédula de ciudadanía</option>
-                  <option value="2">Tarjeta de identidad</option>
-                  <option value="3">Cédula de extrangeria</option>
-                  <option value="4">Pasaporte</option>
-                </select>
-              </div>
-            </div>
             <p class="mb-2 font-semibold text-gray-700">
-              Ingrese el número de documento
+              Código de Producto
             </p>
             <input
-              v-model="cedula"
-              type="number"
+              v-model="codProd"
+              type="text"
               name=""
-              placeholder="Número de documento"
+              placeholder="Ingrese un código"
               class="
                 p-5
                 mb-5
@@ -318,7 +293,9 @@
                 h-12
               "
             />
-            <p class="mb-2 font-semibold text-gray-700">Nombres</p>
+            <p class="mb-2 font-semibold text-gray-700">
+              Nombre de Producto
+            </p>
             <input
               v-model="nombre"
               type="text"
@@ -334,28 +311,14 @@
                 h-12
               "
             />
-            <p class="mb-2 font-semibold text-gray-700">Apellidos</p>
+            <p class="mb-2 font-semibold text-gray-700">
+              Precio del Producto
+            </p>
             <input
-              v-model="apellido"
-              type="text"
-              name=""
-              placeholder="ingrese el apellido"
-              class="
-                p-5
-                mb-5
-                bg-white
-                border border-gray-200
-                rounded
-                shadow-sm
-                h-12
-              "
-            />
-            <p class="mb-2 font-semibold text-gray-700">Teléfono</p>
-            <input
-              v-model="telefono"
+              v-model="precio"
               type="number"
               name=""
-              placeholder="Ingrese el número de teléfono "
+              placeholder="Ingrese el precio"
               class="
                 p-5
                 mb-5
@@ -366,12 +329,14 @@
                 h-12
               "
             />
-            <p class="mb-2 font-semibold text-gray-700">Dirección</p>
+            <p class="mb-2 font-semibold text-gray-700">
+              Cantidad
+            </p>
             <input
-              v-model="direccion"
-              type="text"
+              v-model="cant"
+              type="number"
               name=""
-              placeholder="Ingrese la dirección"
+              placeholder="Ingrese la cantidad"
               class="
                 p-5
                 mb-5
@@ -382,12 +347,14 @@
                 h-12
               "
             />
-            <p class="mb-2 font-semibold text-gray-700">Correo electrónico</p>
+            <p class="mb-1 font-semibold text-gray-700">
+              Seleccione la fecha de vencimiento
+            </p>
             <input
-              v-model="correo"
-              type="text"
+              v-model="fecVenc"
+              type="date"
               name=""
-              placeholder="Ingrese el correo"
+              placeholder="Ingrese la cantidad"
               class="
                 p-5
                 mb-5
@@ -398,21 +365,54 @@
                 h-12
               "
             />
+            <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
             <div class="w-full">
-              <p class="mb-2 font-semibold text-gray-700">
-                Seleccione un estado
-              </p>
-
-              <select
-                class="w-full text-gray-700 border-gray-600 rounded"
-                name="estado"
-                v-model="estado2"
-              >
-                <option value="1">Activo</option>
-                <option value="0">Inactivo</option>
-              </select>
+               <p class="mb-1 font-semibold text-gray-700">Selecciona un estado</p>
+               <select class="w-full text-gray-700 mb-4 border-gray-600 rounded" name="estado" v-model="estado" >
+                   <option value="1">Activo</option>
+                   <option value="0">Inactivo</option>
+               </select>
+               <p class="mb-1 font-semibold text-gray-700">Selecciona una Categoría</p>
+               <select class="w-full text-gray-700 mb-4 border-gray-600 rounded" name="estado" v-model="idCat" >
+                   <option v-for="objeto in arrayCateg" :key="objeto.id" :value="objeto.id">{{objeto.nombre}}</option>
+               </select>
+               <p class="mb-1 font-semibold text-gray-700">Selecciona una Marca</p>
+               <select @change="getModelo" class="w-full text-gray-700 mb-4 border-gray-600 rounded" name="estado" v-model="idMarca" >
+                   <option v-for="objeto in arrayMarcas" :key="objeto.id" :value="objeto.id">{{objeto.nombre}}</option>
+               </select>
+               <p class="mb-1 font-semibold text-gray-700">Selecciona un Modelo</p> 
+                <select class="w-full text-gray-700 border-gray-600 rounded" name="estado" v-model="idModelo" >
+                   <option v-for="objeto in arrayModelos" :key="objeto.id" :value="objeto.id">{{objeto.nombre}}</option>
+               </select>
             </div>
-
+          </div>
+            <!-- <div class="grid gap-4 grid-cols-6 mt-2">
+              <div>
+                <label class="inline-flex items-center">
+                  <input
+                    v-model="estado"
+                    type="radio"
+                    class="inline-flex form-radio bg-green-500 select-none"
+                    name="radio"
+                    value="1"
+                    checked
+                  />
+                  <span class="ml-2">Activo</span>
+                </label>
+              </div>
+              <div>
+                <label class="inline-flex items-center">
+                  <input
+                    v-model="estado"
+                    type="radio"
+                    class="form-radio bg-gray-400"
+                    name="radio"
+                    value="0"
+                  />
+                  <span class="ml-2">Inactivo</span>
+                </label>
+              </div>
+            </div> -->
             <hr />
           </div>
           <div
@@ -427,7 +427,7 @@
             "
           >
             <button
-              @click="cerrarCliente"
+              @click="cerrarProd"
               class="
                 px-4
                 py-2
@@ -441,15 +441,15 @@
               Cerrar
             </button>
             <button
-              v-if="opcBoton == false"
-              @click="regCliente"
+              v-if="boton == false"
+              @click="regproducto"
               class="px-4 py-2 text-white font-semibold bg-blue-500 rounded"
             >
               Guardar
             </button>
             <button
               v-else
-              @click="actCliente"
+              @click="actproducto"
               class="px-4 py-2 text-white font-semibold bg-blue-500 rounded"
             >
               Actualizar
@@ -518,7 +518,7 @@
               </svg>
               <div class="flex flex-col ml-3">
                 <div class="font-medium leading-none text-gray-100">
-                  Eliminar el cliente {{ nomCliente }}?
+                  Eliminar esta producto {{ nombreCat }}?
                 </div>
                 <p class="text-sm text-white leading-none mt-1">
                   Este proceso es irreversible!
@@ -526,7 +526,7 @@
               </div>
             </div>
             <button
-              @click="cerrarCliente"
+              @click="cerrarCat"
               class="
                 flex-no-shrink
                 bg-gray-500
@@ -546,7 +546,7 @@
               NO
             </button>
             <button
-              @click="destroyCliente"
+              @click="destroyCategoria"
               class="
                 flex-no-shrink
                 bg-red-500
@@ -574,6 +574,7 @@
 <script>
 import { defineComponent } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import axios from "axios";
 
 export default defineComponent({
   components: {
@@ -582,145 +583,166 @@ export default defineComponent({
   data() {
     return {
       tipoAccion: 0,
+      idprod: 0,
       tittle: "",
-      estado1: "",
-      cedula: "",
+      codProd: "",
       nombre: "",
-      nomCliente: "",
-      apellido: "",
-      telefono: "",
-      direccion: "",
-      correo: "",
-      estado2: 0,
-      opcBoton: true,
-      idCliente: 0,
+      precio: "",
+      cant: "0",
+      fecVenc: "",
+      edo: "1",
+      idMarca: "",
+      idCat: "",
+      idModelo: "",
       arrayData: [],
+      arrayMarcas: [],
+      arrayModelos: [],
+      arrayCateg:[],
+      boton: true,
     };
   },
-
-  methods: {
+  // props:['categoria'],
+  methods: { 
     listarDatos() {
       let me = this;
-      var url = "/api/cliente/data";
+      var url = "/api/producto/";
 
       axios
         .get(url)
         .then(function (response) {
           var respuesta = response.data;
-          me.arrayData = respuesta.cliente;
+          me.arrayData = respuesta.producto;
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-    abrirCliente() {
-      this.tipoAccion = 1;
-      this.tittle = "Registrar cliente";
-      this.opcBoton = false;
-      this.limpiar();
-    },
-    regCliente() {
+    getMarca(){
       let me = this;
-      var url = "/api/cliente/registrar";
+      var url = "/api/marca/getmarca";
+      axios
+      .get(url)
+      .then(function(response){
+        var respuesta = response.data;
+        me.arrayMarcas = respuesta.marca
+      })
+      .catch(function (error){
+        console.log(error);
+      });
+    },
+    getCateg(){
+      let me = this;
+      var url = "/api/categoria/getCateg";
+      axios
+      .get(url)
+      .then(function(response){
+        var respuesta = response.data;
+        me.arrayCateg = respuesta.categoria
+      })
+      .catch(function (error){
+        console.log(error);
+      });
+    },
+     getModelo(){
+      let me = this;
+      var url = "/api/modelo?idMarca=" + this.idMarca;
+      axios
+      .get(url)
+      .then(function(response){
+        var respuesta = response.data;
+        me.arrayModelos = respuesta.modelo
+      })
+      .catch(function (error){
+        console.log(error);
+      });
+    },
+    abrirProducto() {
+          this.tittle = "Registrar Producto";
+          this.tipoAccion = 1;
+          this.boton = false;
+          this.limpiar();
+    },
+    regProducto() {
+        let me = this;
+      var url = "/api/producto/registrar";
       axios
         .post(url, {
-          tip_doc: this.estado1,
-          num_doc: this.cedula,
-          nombres: this.nombre,
-          apellidos: this.apellido,
-          tel: this.telefono,
-          dir: this.direccion,
-          email: this.correo,
-          edo: this.estado2,
+            cod_prod: this.codProd,
+            nombre: this.nombre,
+            precio: this.precio,
+            cantidad: this.cant,
+            edo: this.estado,
+            id_categ: this.idCat,
+            id_marca: this.idMarca,
         })
         .then(function (response) {
-          me.listarDatos();
+            me.listarDatos();
           alert("Registro guardado exitosamente!");
-          me.cerrarCliente();
+          me.cerrarProd();
         })
         .catch(function (error) {
-          console.log(error.message);
+            console.log(error.message);
         });
     },
-    editarCliente(data = []) {
+    editarproducto(data = []) {
+      this.tittle = "Actualizar producto";
       this.tipoAccion = 1;
-      this.tittle = "Actualizar cliente";
-      this.idCliente = data["id"];
-      this.estado1 = data["tip_doc"];
-      this.cedula = data["num_doc"];
-      this.nombre = data["nombres"];
-      this.apellido = data["apellidos"];
-      this.telefono = data["tel"];
-      this.direccion = data["dir"];
-      this.correo = data["email"];
-      this.estado2 = data["estado"];
+      this.idCat = data["id"];
+      this.nombre = data["nombre"];
+      this.estado = data["estado"];
     },
-    actCliente() {
-      let me = this;
-      var url = "/api/cliente/actualizar";
+    actproducto() {
+        let me = this;
+      var url = "/api/producto/actualizar";
       axios
         .put(url, {
-          id: this.idCliente,
-          tip_doc: this.estado1,
-          num_doc: this.cedula,
-          nombres: this.nombre,
-          apellidos: this.apellido,
-          tel: this.telefono,
-          dir: this.direccion,
-          email: this.correo,
-          estado: this.estado2,
+            id: this.idCat,
+          nombre: this.nombre,
+          edo: this.estado,
         })
         .then(function (response) {
-          me.listarDatos();
+            me.listarDatos();
           alert("Registro actualizado exitosamente!");
-          me.cerrarCliente();
+          me.cerrarCat();
         })
         .catch(function (error) {
-          console.log(error.message);
+            console.log(error.message);
         });
-    },
-    eliminarCliente(data = []) {
+    },    
+    eliminarproducto(data = []) {
       this.tipoAccion = 2;
-      this.idCliente = data["id"];
-      this.nomCliente = data["nombres"];
+      this.idCat = data["id"];
+      this.nombreCat = data["nombre"];
     },
-    destroyCliente() {
+    destroyproducto() {
       let me = this;
-      var url = "/api/cliente/eliminar";
+      var url = "/api/producto/eliminar";
 
       axios
         .post(url, {
-          id: this.idCliente,
+          id: this.idCat,
         })
         .then(function (response) {
           me.listarDatos();
           alert("Registro eliminado!");
-          me.cerrarCliente();
+          me.cerrarCat();
         })
         .catch(function (error) {
           console.log(error);
         });
-    },
-    verCliente() {
-      alert("boton ver ok");
-    },
+    },    
     limpiar() {
       this.nombre = "";
-      this.estado = 0;
-      (this.cedula = ""),
-        (this.apellido = ""),
-        (this.telefono = ""),
-        (this.direccion = ""),
-        (this.correo = ""),
-        (this.estado2 = 0),
-        (this.estado1 = 0);
+      this.estado = "1";
     },
-    cerrarCliente() {
+    cerrarProd() {
       this.tipoAccion = 0;
     },
   },
   mounted() {
     this.listarDatos();
+    this.getMarca();
+    this.getCateg();
   },
 });
 </script>

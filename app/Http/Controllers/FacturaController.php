@@ -7,13 +7,17 @@ use App\Models\DetFactura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use inertia\inertia;
+
 
 class FacturaController extends Controller
 {
     //
     public function index(){
         $factura= Factura::all();
-        return ['factura' => $factura];
+        return inertia::render('Factura',['factura'=>$factura]);
+
+        // return ['factura' => $factura];
     }
 
 

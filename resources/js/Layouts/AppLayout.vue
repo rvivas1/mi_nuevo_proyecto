@@ -34,6 +34,12 @@
                                 <jet-nav-link :href="route('marca')" :active="route().current('marca')">
                                     Marcas
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('producto')" :active="route().current('producto')">
+                                    Productos
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('factura')" :active="route().current('factura')">
+                                    Facturas
+                                </jet-nav-link>
                             </div>
                         </div>
 

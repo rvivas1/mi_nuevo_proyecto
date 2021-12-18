@@ -40,15 +40,14 @@ class CategoriaController extends Controller
     }
     public function destroy(Request $request){
         $categoria= Categoria::findOrFail($request->id);
-        $categoria-> delete();
+        $categoria->delete();
     }
     public function getCategoria(Request $request){
-        $edo = $request->edo;
         
         $categoria= Categoria::select('id','nombre')
-        ->where('estado',$edo)->get();
+        ->where('estado',1)->get();
         return [
-            'categ'=>$categoria
+            'categoria'=>$categoria
         ];
     }
 

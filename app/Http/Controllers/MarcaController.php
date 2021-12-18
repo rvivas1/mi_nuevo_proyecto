@@ -43,10 +43,9 @@ class MarcaController extends Controller
     }
 
     public function getMarca(Request $request){
-        $edo = $request->edo;
         
         $marca= Marca::select('id','nombre')
-        ->where('estado',$edo)->get();
+        ->where('estado',1)->get();
         return ['marca'=>$marca];
     }
 

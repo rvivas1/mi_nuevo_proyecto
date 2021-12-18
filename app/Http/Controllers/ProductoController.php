@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 
 use Illuminate\Http\Request;
+use inertia\inertia;
 
 class ProductoController extends Controller
 {
     //
+
+    public function indexMain(){
+        $producto=Producto::all();
+        return inertia::render('Producto',['producto'=>$producto]);
+        
+        // return ['categoria'=>$categoria];
+    }
+
+
     public function index(){
         $producto= Producto::join('categorias', 'productos.id_categ','=','categorias.id')
         ->join('marcas', 'productos.id_marca','=','marcas.id')

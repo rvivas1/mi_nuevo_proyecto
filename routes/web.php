@@ -19,6 +19,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\ModeloController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -64,14 +65,25 @@ Route::middleware(['auth:sanctum'])->post('/api/marca/eliminar', [MarcaControlle
 
 
 // :::::::::: ROUTES PRODUCTOS >>>>>>>>>>>>>>>>
+Route::middleware(['auth:sanctum'])->get('/api/producto/main', [ProductoController::class, 'indexMain'])->name('producto');
+
 Route::middleware(['auth:sanctum'])->get('/api/producto', [ProductoController::class, 'index']);
+
 Route::middleware(['auth:sanctum'])->post('/api/producto/registrar', [ProductoController::class,'store']);
 Route::middleware(['auth:sanctum'])->put('/api/producto/actualizar', [ProductoController:: class, 'update']);
 Route::middleware(['auth:sanctum'])->post('/api/producto/eliminar', [ProductoController:: class, 'destroy']);
 
 
 // :::::::::: ROUTES FACTURAS >>>>>>>>>>>>>>>>
+Route::middleware(['auth:sanctum'])->get('/api/factura/index', [FacturaController::class, 'index'])->name('factura');
+
 Route::middleware(['auth:sanctum'])->get('/api/factura', [FacturaController:: class, 'index']);
 Route::middleware(['auth:sanctum'])->post('/api/factura/registrar', [FacturaController:: class, 'store']);
 Route::middleware(['auth:sanctum'])->put('/api/factura/actualizar', [FacturaController:: class, 'update']);
 Route::middleware(['auth:sanctum'])->post('/api/factura/eliminar', [FacturaController:: class, 'destroy']);
+
+
+
+
+// :::::::::: ROUTES MODELOS >>>>>>>>>>>>>>>>
+Route::middleware(['auth:sanctum'])->get('/api/modelo', [ModeloController:: class, 'getModelo']);
